@@ -10,6 +10,41 @@ if (!$conn) {
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 };
+
+function uploadToApi($target_file){
+    require __DIR__ . '/vendor/autoload.php';
+    $fileData = fopen($target_file, 'r');
+    $client = new \GuzzleHttp\Client();
+    try {
+    $r = $client->request('POST', 'https://api.ocr.space/parse/image',[
+        'headers' => ['apiKey' => 'K86583684888957'],
+        'multipart' => [
+            [
+                'name' => 'file',
+                'contents' => $fileData
+            ]
+        ]
+    ], ['file' => $fileData]);
+    $response =  json_decode($r->getBody(),true);
+    $str = str_replace(PHP_EOL, ' ', $response['ParsedResults'][0]['ParsedText']);
+    // print_r($response['ParsedResults'][0]['ParsedText']);
+    header("Location: ../?menu=translate&text=".$str);
+    } catch(Exception $err) {
+        header('HTTP/1.0 403 Forbidden');
+        echo $err->getMessage();
+    }
+}
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 if (isset($_POST['report'])) {
     $sql2 = "INSERT INTO `reports` (`Name`, `Report`) VALUES ('$_SESSION[Name]', '$_POST[translate]')";
     $result2 = $conn->query($sql2);
@@ -44,40 +79,6 @@ if (isset($_POST['report'])) {
             header('HTTP/1.0 403 Forbidden');
             echo "Sorry, there was an error uploading your file.";
         }
-    }
-
-    function uploadToApi($target_file){
-        require __DIR__ . '/vendor/autoload.php';
-        $fileData = fopen($target_file, 'r');
-        $client = new \GuzzleHttp\Client();
-        try {
-        $r = $client->request('POST', 'https://api.ocr.space/parse/image',[
-            'headers' => ['apiKey' => 'K86583684888957'],
-            'multipart' => [
-                [
-                    'name' => 'file',
-                    'contents' => $fileData
-                ]
-            ]
-        ], ['file' => $fileData]);
-        $response =  json_decode($r->getBody(),true);
-        $str = str_replace(PHP_EOL, ' ', $response['ParsedResults'][0]['ParsedText']);
-        // print_r($response['ParsedResults'][0]['ParsedText']);
-        header("Location: ../?menu=translate&text=".$str);
-        } catch(Exception $err) {
-            header('HTTP/1.0 403 Forbidden');
-            echo $err->getMessage();
-        }
-    }
-
-    function generateRandomString($length = 10) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
     }
 }
 ?>
