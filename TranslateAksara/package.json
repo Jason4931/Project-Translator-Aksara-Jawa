@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "carakanjs": "^1.2.1",
+    "express": "^4.18.2"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "NODE_ENV": "production npm start"
+}

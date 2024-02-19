@@ -1,0 +1,4 @@
+2024-02-13 22:37:01 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Jason\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file "C:\xampp\htdocs\Project Translator Aksara Jawa\TranslateAksara\index.js" --log "RunNodeJS wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-02-13 22:37:01 - Started 8300
+2024-02-15 13:24:38 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Jason\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file "C:\xampp\htdocs\Project Translator Aksara Jawa\TranslateAksara\index.js" --log "RunNodeJS wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-02-15 13:24:38 - Started 6012
