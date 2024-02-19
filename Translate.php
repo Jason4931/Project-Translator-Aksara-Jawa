@@ -92,7 +92,7 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
                         </div>
                         <div class="col-12">
                             <label class="btn bg-primary text-white mb-1 w-100">
-                                <input style="display: none;" type="file" name="image" id="fileToUpload" accept="image/*" capture="environment">Take Photo
+                                <input style="display: none;" type="file" name="imagecam" id="fileToUpload" accept="image/*" capture="environment">Take Photo
                             </label>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
                         </div>
                         <div class="col-12">
                             <label class="btn bg-primary text-white mb-1 w-100">
-                                <input style="display: none;" type="file" name="audio" id="fileToUpload" accept="audio/*" capture="user">Record Voice
+                                <input style="display: none;" type="file" name="audiomic" id="fileToUpload" accept="audio/*" capture="user">Record Voice
                             </label>
                         </div>
                     </div>
