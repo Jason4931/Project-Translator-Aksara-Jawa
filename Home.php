@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="row mt-4">
-    <div class="col mx-5 mt-2">
+    <div class="col me-md-1 mx-5 mt-2">
       <div class="card bg-primary scale">
         <a href="./?menu=translate" style="text-decoration:none;">
           <img src="./gambar/translate.svg" class="p-2 card-img-top bg-white" height="150">
@@ -28,7 +28,7 @@
         </a>
       </div>
     </div>
-    <div class="col mx-5 mt-2">
+    <div class="col mx-md-1 mx-5 mt-2">
       <div class="card bg-primary scale">
         <a href="./?menu=feedback" style="text-decoration:none;">
           <img src="./gambar/feedback.svg" class="p-2 card-img-top bg-white" height="150">
@@ -38,7 +38,7 @@
         </a>
       </div>
     </div>
-    <div class="col mx-5 mt-2">
+    <div class="col mx-md-1 mx-5 mt-2">
       <div class="card bg-primary scale">
         <a href="./?menu=premium" style="text-decoration:none;">
           <img src="./gambar/premium.svg" class="p-2 card-img-top bg-white" height="150">
@@ -49,7 +49,7 @@
       </div>
     </div>
     <?php if($_SESSION['Akses']=="Premium") { ?>
-      <div class="col mx-5 mt-2">
+      <div class="col ms-md-1 mx-5 mt-2">
         <div class="card bg-primary scale">
           <a href="./?menu=materi" style="text-decoration:none;">
             <img src="./gambar/materi.svg" class="p-2 card-img-top bg-white" height="150">
