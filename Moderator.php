@@ -42,8 +42,9 @@ if(isset($_POST['editaks'])){
     $resultaksara = $conn->query($sqlaksara);
     if (mysqli_num_rows($resultaksara)>0) {
         while($row = $resultaksara->fetch_assoc()) {
-            $aks=$_POST[$row["Text"]];
-            $sqlaks = "UPDATE `aksara` SET `Aksara`='$aks' WHERE `Text`='$row[Text]'";
+            $text=$row["Text"];
+            $aks=$_POST[$text];
+            $sqlaks = "UPDATE `aksara` SET `Aksara`='$aks' WHERE `Text`='$text'";
         }
     }
     $resultaks = $conn->query($sqlaks);
