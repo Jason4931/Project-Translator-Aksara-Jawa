@@ -153,9 +153,10 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
     //     document.cookie = escape(name) + "=" + escape(value) + "; path=/";
     // }
     function filled() {
-        document.getElementById('fileToUpload').disabled = true;
         if (document.getElementById('capture').value == "") {
             document.getElementById('fileToUpload').disabled = false;
+        } else {
+            document.getElementById('fileToUpload').disabled = true;
         }
     }
     function replace_spasi(text) {
