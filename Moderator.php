@@ -37,6 +37,23 @@ if(isset($_GET['inputsearch'])){
     $sql = "SELECT * FROM `account` WHERE `Username`='$_GET[inputsearch]'";
     $resulta = $conn->query($sql);
 }
+if(isset($_POST['editaks'])){
+    $sqlaksara = "SELECT * FROM `aksara`";
+    $resultaksara = $conn->query($sqlaksara);
+    if (mysqli_num_rows($resultaksara)>0) {
+        while($row = $resultaksara->fetch_assoc()) {
+            $aks=$_POST[$row["Text"]];
+            $sqlaks = "UPDATE `aksara` SET `Aksara`='$aks' WHERE `Text`='$row[Text]'";
+        }
+    }
+    $resultaks = $conn->query($sqlaks);
+    if ($resultaks) {
+    header("location: ./?menu=moderator&aksara");
+    }
+    else{
+    header("location: ./?menu=moderator&aksara");
+    }
+}
 ?>
 <body>
 <?php include "Nav.php"; ?>
@@ -166,13 +183,24 @@ if(isset($_GET['inputsearch'])){
                                 }
                             }
                             if(isset($_GET['aksara'])) {
-                                $sqlaksara = "SELECT * FROM `aksara`";
-                                $resultaksara = $conn->query($sqlaksara);
-                                if (mysqli_num_rows($resultaksara)>0) {
-                                    while($row = $resultaksara->fetch_assoc()) {
-                                        echo $row["Text"].": ".$row["Aksara"]."<br>";
+                                ?><form method="post"><?php
+                                    if(isset($_GET['editaks'])) {
+                                        ?><input type="submit" class="btn btn-primary btn-sm scalesm w-100" name="editaks" value="Done"><?php
+                                    } else {
+                                        ?><a class="btn btn-primary btn-sm scalesm w-100" href="./?menu=moderator&aksara&editaks">Edit</a><?php
                                     }
-                                }
+                                    $sqlaksara = "SELECT * FROM `aksara`";
+                                    $resultaksara = $conn->query($sqlaksara);
+                                    if (mysqli_num_rows($resultaksara)>0) {
+                                        while($row = $resultaksara->fetch_assoc()) {
+                                            if(isset($_GET['editaks'])) {
+                                                echo $row["Text"].": <input name=".$row["Text"]." type='text' class='form-control py-2 border-warning' value=".$row["Aksara"]." required>";
+                                            } else {
+                                                echo $row["Text"].": ".$row["Aksara"]."<br>";
+                                            }
+                                        }
+                                    }
+                                ?></form><?php
                             }
                         ?>
                     </div>
