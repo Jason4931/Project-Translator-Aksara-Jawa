@@ -45,9 +45,9 @@ if(isset($_POST['editaks'])){
             $text=$row["Text"];
             $aks=$_POST[$text];
             $sqlaks = "UPDATE `aksara` SET `Aksara`='$aks' WHERE `Text`='$text'";
+            $resultaks = $conn->query($sqlaks);
         }
     }
-    $resultaks = $conn->query($sqlaks);
     if ($resultaks) {
     header("location: ./?menu=moderator&aksara");
     }
