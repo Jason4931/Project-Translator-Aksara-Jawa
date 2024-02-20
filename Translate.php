@@ -85,7 +85,7 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
                 <?php } if(isset($_GET["image"])){ ?>
                     <div class="row">
                         <div class="col-xl-7 col-12">
-                            <input class="form-control mb-1 w-100" type="file" name="image" id="fileToUpload" required>
+                            <input class="form-control mb-1 w-100" type="file" name="image" id="fileToUpload">
                         </div>
                         <div class="col-xl-5 col-12">
                             <input class="btn bg-primary text-white mb-1 w-100" type="submit" value="Convert Image to Text">
@@ -99,7 +99,7 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
                 <?php } if(isset($_GET["mic"])) { ?>
                     <div class="row">
                         <div class="col-xl-7 col-12">
-                            <input class="form-control mb-1 w-100" type="file" name="audio" id="fileToUpload" required>
+                            <input class="form-control mb-1 w-100" type="file" name="audio" id="fileToUpload">
                         </div>
                         <div class="col-xl-5 col-12">
                             <input class="btn bg-primary text-white mb-1 w-100" type="submit" value="Convert Audio to Text">

@@ -58,12 +58,23 @@ if (isset($_POST['report'])) {
     require __DIR__ . '/vendor/autoload.php';
     $target_dir = "uploads/";
     $uploadOk = 1;
-    $FileType = strtolower(pathinfo($_FILES["image"]["name"],PATHINFO_EXTENSION));
+    if(isset($_FILES["image"])) {
+        $files = $_FILES["image"]["name"];
+        $filestmp = $_FILES["image"]["tmp_name"];
+    } else if(isset($_FILES["imagecam"])) {
+        $files = $_FILES["imagecam"]["name"];
+        $filestmp = $_FILES["imagecam"]["tmp_name"];
+    } else {
+        header('HTTP/1.0 403 Forbidden');
+        echo "Sorry, please upload an image";
+        $uploadOk = 0;
+    }
+    $FileType = strtolower(pathinfo($files,PATHINFO_EXTENSION));
     $target_file = $target_dir . generateRandomString() .'.'.$FileType;
     // Check file size
     if ($_FILES["image"]["size"] > 5000000) {
         header('HTTP/1.0 403 Forbidden');
-        echo "Sorry, your file is too large.";
+        echo "Sorry, your file is too large";
         $uploadOk = 0;
     }
     if($FileType != "jpg" && $FileType != "png" && $FileType != "jpeg") {
@@ -73,11 +84,11 @@ if (isset($_POST['report'])) {
     }
     if ($uploadOk == 1) {
 
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        if (move_uploaded_file($filestmp, $target_file)) {
             uploadToApi($target_file);
         } else {
             header('HTTP/1.0 403 Forbidden');
-            echo "Sorry, there was an error uploading your file.";
+            echo "Sorry, there was an error uploading your file";
         }
     }
 }
