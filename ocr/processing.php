@@ -84,7 +84,6 @@ if (isset($_POST['report'])) {
             $uploadOk = 0;
         }
         if ($uploadOk == 1) {
-
             if (move_uploaded_file($filestmp, $target_file)) {
                 uploadToApi($target_file);
             } else {
