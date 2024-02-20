@@ -84,7 +84,12 @@ $resultrating = $conn->query($sqlrating);
                         }
                     ?></div><?php
                     echo $row["Comment"]."<br><br>";
-                } else {
+                }
+            }
+            $sqlcomment = "SELECT * FROM `comment` LIMIT 10";
+            $resultcomment = $conn->query($sqlcomment);
+            while($row = $resultcomment->fetch_assoc()) {
+                if($row["Name"] != $_SESSION["Name"]) {
                     echo $row["Name"]." ".$row["Date"]." ";
                     $sqlrate = "SELECT * FROM `rating` WHERE `Name`='$row[Name]'";
                     $resultrate = $conn->query($sqlrate);
