@@ -72,15 +72,29 @@ $resultrating = $conn->query($sqlrating);
         <?php
         if (mysqli_num_rows($resultcomment)>0) {
             while($row = $resultcomment->fetch_assoc()) {
-                echo $row["Name"]." ".$row["Date"]." ";
-                $sqlrate = "SELECT * FROM `rating` WHERE `Name`='$row[Name]'";
-                $resultrate = $conn->query($sqlrate);
-                if (mysqli_num_rows($resultrate)>0) {
-                    while($rowrate = $resultrate->fetch_assoc()) {
-                        echo "★".$rowrate["Rate"];
+                if($row["Name"] == $_SESSION["Name"]) {
+                    ?><div class="border border-warning rounded-pill px-1" style="width: fit-content;"><?php
+                        echo $row["Name"]." ".$row["Date"]." ";
+                        $sqlrate = "SELECT * FROM `rating` WHERE `Name`='$row[Name]'";
+                        $resultrate = $conn->query($sqlrate);
+                        if (mysqli_num_rows($resultrate)>0) {
+                            while($rowrate = $resultrate->fetch_assoc()) {
+                                echo "★".$rowrate["Rate"];
+                            }
+                        }
+                    ?></div><?php
+                    echo $row["Comment"]."<br><br>";
+                } else {
+                    echo $row["Name"]." ".$row["Date"]." ";
+                    $sqlrate = "SELECT * FROM `rating` WHERE `Name`='$row[Name]'";
+                    $resultrate = $conn->query($sqlrate);
+                    if (mysqli_num_rows($resultrate)>0) {
+                        while($rowrate = $resultrate->fetch_assoc()) {
+                            echo "★".$rowrate["Rate"];
+                        }
                     }
+                    echo "<br>".$row["Comment"]."<br><br>";
                 }
-                echo "<br>".$row["Comment"]."<br><br>";
             }
         }
         ?>
