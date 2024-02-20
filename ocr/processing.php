@@ -58,10 +58,10 @@ if (isset($_POST['report'])) {
     require __DIR__ . '/vendor/autoload.php';
     $target_dir = "uploads/";
     $uploadOk = 1;
-    if(isset($_FILES["image"])) {
+    if($_FILES["image"]["name"] != "") {
         $files = $_FILES["image"]["name"];
         $filestmp = $_FILES["image"]["tmp_name"];
-    } else if(isset($_FILES["imagecam"])) {
+    } else if($_FILES["imagecam"]["name"] != "") {
         $files = $_FILES["imagecam"]["name"];
         $filestmp = $_FILES["imagecam"]["tmp_name"];
     } else {
@@ -69,26 +69,28 @@ if (isset($_POST['report'])) {
         echo "Sorry, please upload an image";
         $uploadOk = 0;
     }
-    $FileType = strtolower(pathinfo($files,PATHINFO_EXTENSION));
-    $target_file = $target_dir . generateRandomString() .'.'.$FileType;
-    // Check file size
-    if ($_FILES["image"]["size"] > 5000000) {
-        header('HTTP/1.0 403 Forbidden');
-        echo "Sorry, your file is too large";
-        $uploadOk = 0;
-    }
-    if($FileType != "jpg" && $FileType != "png" && $FileType != "jpeg") {
-        header('HTTP/1.0 403 Forbidden');
-        echo "Sorry, please upload a png file";
-        $uploadOk = 0;
-    }
-    if ($uploadOk == 1) {
-
-        if (move_uploaded_file($filestmp, $target_file)) {
-            uploadToApi($target_file);
-        } else {
+    if(isset($files)) {
+        $FileType = strtolower(pathinfo($files,PATHINFO_EXTENSION));
+        $target_file = $target_dir . generateRandomString() .'.'.$FileType;
+        // Check file size
+        if ($_FILES["image"]["size"] > 5000000) {
             header('HTTP/1.0 403 Forbidden');
-            echo "Sorry, there was an error uploading your file";
+            echo "Sorry, your file is too large";
+            $uploadOk = 0;
+        }
+        if($FileType != "jpg" && $FileType != "png" && $FileType != "jpeg") {
+            header('HTTP/1.0 403 Forbidden');
+            echo "Sorry, please upload a png file";
+            $uploadOk = 0;
+        }
+        if ($uploadOk == 1) {
+
+            if (move_uploaded_file($filestmp, $target_file)) {
+                uploadToApi($target_file);
+            } else {
+                header('HTTP/1.0 403 Forbidden');
+                echo "Sorry, there was an error uploading your file";
+            }
         }
     }
 }

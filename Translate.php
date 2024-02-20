@@ -92,7 +92,7 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
                         </div>
                         <div class="col-12">
                             <label class="btn bg-primary text-white mb-1 w-100">
-                                <input style="display: none;" type="file" name="imagecam" id="fileToUpload" accept="image/*" capture="environment">Take Photo
+                                <input onchange="filled()" style="display: none;" type="file" name="imagecam" id="capture" accept="image/*" capture="environment">Take Photo
                             </label>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
                         </div>
                         <div class="col-12">
                             <label class="btn bg-primary text-white mb-1 w-100">
-                                <input style="display: none;" type="file" name="audiomic" id="fileToUpload" accept="audio/*" capture="user">Record Voice
+                                <input onchange="filled()" style="display: none;" type="file" name="audiomic" id="capture" accept="audio/*" capture="user">Record Voice
                             </label>
                         </div>
                     </div>
@@ -152,6 +152,12 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
     // function createCookie(name, value) {
     //     document.cookie = escape(name) + "=" + escape(value) + "; path=/";
     // }
+    function filled() {
+        document.getElementById('fileToUpload').disabled = true;
+        if (document.getElementById('capture').value == "") {
+            document.getElementById('fileToUpload').disabled = false;
+        }
+    }
     function replace_spasi(text) {
         text=text.replace(/ /g, "");
         return text;
