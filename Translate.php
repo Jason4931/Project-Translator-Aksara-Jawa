@@ -74,43 +74,45 @@ if ($_SESSION['Akses']=="User" || $_SESSION['Akses']=="Premium") {?>
                     $str = str_replace('  ', ' ', $_GET["text"]);
                     echo trim($str);
                 } ?></textarea>
-                <?php if(!isset($_GET["image"])) { ?>
-                    <a href="./?menu=translate&image" class="text-black"><i class="glow fa fa-camera mx-2" style="font-size:36px"></i></a>
-                <?php } else { ?>
-                    <a href="./?menu=translate" class="text-black"><i class="glow activeglow fa fa-camera mx-2" style="font-size:36px"></i></a>
-                <?php } if(!isset($_GET["mic"])) { ?>
-                    <a href="./?menu=translate&mic" class="text-black"><i class="glow fa fa-microphone mx-2" style="font-size:36px"></i></a>
-                <?php } else { ?>
-                    <a href="./?menu=translate" class="text-black"><i class="glow activeglow fa fa-microphone mx-2" style="font-size:36px"></i></a>
-                <?php } if(isset($_GET["image"])){ ?>
-                    <div class="row">
-                        <div class="col-xl-7 col-12">
-                            <input class="form-control mb-1 w-100" type="file" name="image" id="fileToUpload">
+                <?php if ($_SESSION['Akses']=="Premium") {
+                    if(!isset($_GET["image"])) { ?>
+                        <a href="./?menu=translate&image" class="text-black"><i class="glow fa fa-camera mx-2" style="font-size:36px"></i></a>
+                    <?php } else { ?>
+                        <a href="./?menu=translate" class="text-black"><i class="glow activeglow fa fa-camera mx-2" style="font-size:36px"></i></a>
+                    <?php } if(!isset($_GET["mic"])) { ?>
+                        <a href="./?menu=translate&mic" class="text-black"><i class="glow fa fa-microphone mx-2" style="font-size:36px"></i></a>
+                    <?php } else { ?>
+                        <a href="./?menu=translate" class="text-black"><i class="glow activeglow fa fa-microphone mx-2" style="font-size:36px"></i></a>
+                    <?php } if(isset($_GET["image"])){ ?>
+                        <div class="row">
+                            <div class="col-xl-7 col-12">
+                                <input class="form-control mb-1 w-100" type="file" name="image" id="fileToUpload">
+                            </div>
+                            <div class="col-xl-5 col-12">
+                                <input class="btn bg-primary text-white mb-1 w-100" type="submit" value="Convert Image to Text">
+                            </div>
+                            <div class="col-12">
+                                <label class="btn bg-primary text-white mb-1 w-100">
+                                    <input onchange="filled()" style="display: none;" type="file" name="imagecam" id="capture" accept="image/*" capture="environment">Take Photo
+                                </label>
+                            </div>
                         </div>
-                        <div class="col-xl-5 col-12">
-                            <input class="btn bg-primary text-white mb-1 w-100" type="submit" value="Convert Image to Text">
+                    <?php } if(isset($_GET["mic"])) { ?>
+                        <div class="row">
+                            <div class="col-xl-7 col-12">
+                                <input class="form-control mb-1 w-100" type="file" name="audio" id="fileToUpload">
+                            </div>
+                            <div class="col-xl-5 col-12">
+                                <input class="btn bg-primary text-white mb-1 w-100" type="submit" value="Convert Audio to Text">
+                            </div>
+                            <div class="col-12">
+                                <label class="btn bg-primary text-white mb-1 w-100">
+                                    <input onchange="filled()" style="display: none;" type="file" name="audiomic" id="capture" accept="audio/*" capture="user">Record Voice
+                                </label>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <label class="btn bg-primary text-white mb-1 w-100">
-                                <input onchange="filled()" style="display: none;" type="file" name="imagecam" id="capture" accept="image/*" capture="environment">Take Photo
-                            </label>
-                        </div>
-                    </div>
-                <?php } if(isset($_GET["mic"])) { ?>
-                    <div class="row">
-                        <div class="col-xl-7 col-12">
-                            <input class="form-control mb-1 w-100" type="file" name="audio" id="fileToUpload">
-                        </div>
-                        <div class="col-xl-5 col-12">
-                            <input class="btn bg-primary text-white mb-1 w-100" type="submit" value="Convert Audio to Text">
-                        </div>
-                        <div class="col-12">
-                            <label class="btn bg-primary text-white mb-1 w-100">
-                                <input onchange="filled()" style="display: none;" type="file" name="audiomic" id="capture" accept="audio/*" capture="user">Record Voice
-                            </label>
-                        </div>
-                    </div>
-                <?php } ?>
+                    <?php }
+                } ?>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <textarea name="hasil" id="hasil" cols="30" rows="10" class="w-100 text-black" disabled></textarea>

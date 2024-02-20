@@ -34,7 +34,7 @@
                         <img src="./gambar/Centang.png" alt="" width="46" class="mx-auto"><br>
                         Simpanan History<br>
                         <img src="./gambar/Centang.png" alt="" width="46" class="mx-auto"><br>
-                        Komentar khusus<br>
+                        OCR & Audio Transcribing<br>
                         <img src="./gambar/Centang.png" alt="" width="46" class="mx-auto"><br>
                     </div>
                 </a>
