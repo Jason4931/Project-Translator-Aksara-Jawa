@@ -46,7 +46,7 @@ function generateRandomString($length = 10) {
 }
 
 if (isset($_POST['report'])) {
-    $sql2 = "INSERT INTO `reports` (`Name`, `Report`) VALUES ('$_SESSION[Name]', '$_POST[translate]')";
+    $sql2 = "INSERT INTO `reports` (`Name`, `Report`) VALUES ('$_SESSION[Name]', '$_POST[reportteks]')";
     $result2 = $conn->query($sql2);
     if($result2){
         header("Location: ../?menu=translate");
