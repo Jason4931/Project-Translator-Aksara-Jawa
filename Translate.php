@@ -28,42 +28,22 @@ if(isset($_FILES["audio"]) || isset($_FILES["audiomic"])) {
     }
     $target_file = $target_dir . "Audio.mp3";
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    // $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    // if($check !== false) {
-    //     echo "File is an image - " . $check["mime"] . ".";
-    //     $uploadOk = 1;
-    // } else {
-    //     echo "File is not an image.";
-    //     $uploadOk = 0;
-    // }
-  
-    // Check if file already exists
+    $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     // if (file_exists($target_file)) {
     //     unlink("Audio.mp3");
     // }
-
-    // Check file size
     if ($_FILES["audio"]["size"] > 5000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
-
-    // Allow certain file formats
-    if($imageFileType != "mp3") {
+    if($FileType != "mp3") {
         echo "Sorry, only MP3 files are allowed.";
         $uploadOk = 0;
     }
-
-    // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-        } else {
+    } else {
         if (move_uploaded_file($_FILES["audio"]["tmp_name"], $target_file)) {
-            // print_r ($_FILES["fileToUpload"]);
-            // echo "The file ". htmlspecialchars( basename( $_FILES["audio"]["name"])). " has been uploaded.";
-            // echo '<img src="'.$target_file.'" alt="">';
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:8000/audio?audio=Audio.mp3");
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
