@@ -35,15 +35,15 @@ function uploadToApi($target_file){
     }
 }
 
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
+// function generateRandomString($length = 10) {
+//     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//     $charactersLength = strlen($characters);
+//     $randomString = '';
+//     for ($i = 0; $i < $length; $i++) {
+//         $randomString .= $characters[rand(0, $charactersLength - 1)];
+//     }
+//     return $randomString;
+// }
 
 if (isset($_POST['report'])) {
     $sql2 = "INSERT INTO `reports` (`Name`, `Report`) VALUES ('$_SESSION[Name]', '$_POST[reportteks]')";
@@ -71,7 +71,7 @@ if (isset($_POST['report'])) {
     }
     if(isset($files)) {
         $FileType = strtolower(pathinfo($files,PATHINFO_EXTENSION));
-        $target_file = $target_dir . generateRandomString() .'.'.$FileType;
+        $target_file = $target_dir . 'Image.'.$FileType;
         // Check file size
         if ($_FILES["image"]["size"] > 5000000) {
             header('HTTP/1.0 403 Forbidden');
