@@ -5,6 +5,28 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .scale {
+            scale: 100%;
+            transition-timing-function: ease-out;
+            transition: scale 0.5s;
+        }
+        .scalemini {
+            scale: 100%;
+            transition-timing-function: ease-out;
+            transition: scale 0.5s;
+        }
+        .scale:hover {
+            scale: 110%;
+            transition-timing-function: ease-out;
+            transition: scale 0.5s;
+        }
+        .scalemini:hover {
+            scale: 105%;
+            transition-timing-function: ease-out;
+            transition: scale 0.5s;
+        }
+    </style>
 </head>
 <body class="align-items-center bg-body-tertiary" style="overflow-x: hidden; background-image: url('./gambar/Bruh5.png'); background-repeat: no-repeat; background-size:contain; background-position:center;">
     <nav class="navbar bg-body-secondary w-100 border-bottom">
@@ -12,16 +34,16 @@
         <div class="d-block w-100" id="navbarScroll">
             <img class="" src="./gambar/Logov2-NoBG.png" alt="" width="50px">    
             <div class="d-flex float-end">
-            <span class="mx-2 text-end"><a href="" class="btn bg-primary py-1 my-2 text-white">Menu</a></span>
+            <span class="mx-2 text-end"><a href="" class="btn bg-primary py-1 my-2 text-white scalemini">Menu</a></span>
             <div class="dropdown-center">
-                <button class="mx-2 text-end btn bg-primary py-1 my-2 text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="mx-2 text-end btn bg-primary py-1 my-2 text-white scalemini" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Kontak
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="#" onclick="nokontak()">+62 0877-8096-6355</a></li>
                 </ul>
             </div>
-            <span class="mx-2 text-end"><a href="./?login" class="btn bg-primary py-1 my-2 text-white">Login</a></span>
+            <span class="mx-2 text-end"><a href="./?login" class="btn bg-primary py-1 my-2 text-white scalemini">Login</a></span>
             </div>
         </div>
         </div>
