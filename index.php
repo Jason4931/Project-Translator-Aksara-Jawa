@@ -67,6 +67,7 @@
 </head>
 <?php
 exec("cd C:\xampp\htdocs\Project Translator Aksara Jawa\TranslateAksara; npm start");
+exec("cd C:\xampp\htdocs\Project Translator Aksara Jawa\audio; python main.py");
 if(!isset($_SESSION['ID'])) {
     if(isset($_GET['login'])){
         $title="Login - Translator Aksara Jawa";
