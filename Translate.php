@@ -36,8 +36,8 @@ if(isset($_FILES["audio"]) || isset($_FILES["audiomic"])) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
-    if($FileType != "mp3") {
-        echo "Sorry, only MP3 files are allowed.";
+    if($FileType != "mp3" && $FileType != "aac" && $FileType != "wav") {
+        echo "Sorry, only MP3, AAC, WAV files are allowed.";
         $uploadOk = 0;
     }
     if ($uploadOk == 0) {
